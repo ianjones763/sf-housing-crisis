@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="box-style.css"/>
+        <link rel="stylesheet" href="slider-style.css"/>
+        
+        <!-- Makes call to rendering API -->
+        <script src="renderer.js"></script>
+        <script src="sliderBox.js"></script>
+        
+        <!-- Puts an object called `data` in global scope -->
+        <script src="data.js"></script> 
+        
+    </head>
+    <body>
+
+        <div id="minwage">
+            <h3>See the effect of varying minimum wage!</h3>
+            <div class="slidecontainer">
+                <div>$5/hr</div>
+                <input type="range" min="5" max="25" value="14" class="slider" id="minwage-slider">
+                <div>$25/hr</div>    
+                <button onclick="reset('minwage-slider-box', 'minwage-slider', 14)">RESET</button>            
+            </div>
+            <div id="minwage-slider-box"></div>
+        </div>
+        
+
+        <script>
+            var rend = new Renderer();
+            var year = '1990';
+            rend.render('minwage-slider-box', data[year], 'SVG/square_thin_', 'SVG/square_'); 
+
+            function reset(boxId, sliderId, origVal) {
+                rend.render(boxId, data[year], 'SVG/square_thin_', 'SVG/square_'); 
+                var slider = document.getElementById(sliderId);
+                var box = document.getElementById(boxId);
+                slider.value = origVal;
+                box.resetRents(data[year]);
+            }
+
+            // This format should be semi-consistent 
+            function minWageUpdate(minWage) {
+                if (!this.minWage) this.minWage = minWage;
+
+                let prevMinWage = this.minWage;
+                this.minWage = minWage;
+                this.incomes['low'] = minWage * 40 * 50;
+                let minWageFraction = this.data['low']['total'] / 100;
+                let percentChangeIncome = 100 * minWageFraction * (minWage - prevMinWage) / prevMinWage;
+                let housingChange = (0.4461 * percentChangeIncome); // removed added constant of ~1 because housingCHange was always positive
+
+
+                return housingChange;
+            }
+            var initialHousingPrice = 25000;
+            var mfi = 95000;
+            var minWageSliderBox = new SliderBox(rend, 'minwage-slider-box',  'minwage-slider', data[year], 'SVG/square_thin_', 'SVG/square_', minWageUpdate, initialHousingPrice, mfi);
+            
+        </script>
+
+    </body>
+</html>

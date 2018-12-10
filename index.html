@@ -1,0 +1,457 @@
+<html>
+    <head>
+        <title>Arbolito - a story of the housing crisis</title>
+        <link rel="stylesheet" href="box-style.css"/>
+        <link rel="stylesheet" href="slider-style.css"/>
+        <link rel="stylesheet" href="index.css"/>
+        <!-- Makes call to rendering API -->
+        <script src="renderer.js"></script>
+        <!-- Slider box  -->
+        <script src="sliderBox.js"></script>
+        
+        <!-- Puts an object called `data` in global scope -->
+        <!-- TODO: add the static data points to this file (the last will be editable in JS) -->
+        <script src="data.js"></script> 
+    </head>
+    <body>
+
+        <script>
+            // SETUP
+            var smilePath = 'SVG/square_big_';
+            var frownPath = 'SVG/';
+            var year1 = '1990';
+            var year2 = '2000';
+            var year3 = '2010';
+            var year4 = '2020'; 
+            var rend = new Renderer();
+            
+            // for radio buttons to swap data in box to another year
+            function radioHandler(event) {
+                debugger;
+                var boxId = event.target.value;
+                var year = event.target.labels[0].innerText;
+                if (year === '2020') year = '2018';
+                rend.render(boxId, data[year], smilePath, frownPath);
+            }
+        </script>
+
+        <!-- INTRO -->
+        <div id="intro_container">
+            <div id="intro">
+                <div id="arbolito">
+                    <p><b>The Town of Arbolito</b></p>
+                </div>
+                <div id="story">
+                    <p>A Story of the Housing Crisis</p>
+                </div>
+            </div>
+            <img class="img-center" src="images/City.png"/><br>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <div class="instruction">
+                <p><strong>It's the year 1990. You're in the town of Arbolito.</strong></p>
+            </div>
+            <p> Residents in Arbolito fall into different income brackets. These brackets are defined by the median family income.</p>
+            
+            <img class="img-center" src="images/SVG/MedianFamilyIncome.svg"/><br>
+
+            <p>
+                <img src="images/SVG/square_big_smile_blue1.svg" height="30"/> make 0-30% of the median family income, <br>
+                <img src="images/SVG/square_big_smile_blue2.svg" height="30"/> make 31-50% of the median family income, <br>
+                <img src="images/SVG/square_big_smile_blue3.svg" height="30"/> make 51-80% of the median family income, and <br>
+                <img src="images/SVG/square_big_smile_blue4.svg" height="30"/> make > 80% of the median family income. <br>
+            </p>
+
+            <p>  Many in Arbolito are <i>rent overburdened</i>. You're considered rent overburdened if you spend <i>over 30%</i> of your income on rent for housing. </p>
+
+            <div class="instruction">
+                <p><br>In the year 1990, Arbolito looks like this:</p>
+            </div>
+        </div>
+
+        <!-- GRAPHIC -->
+        <div class="graphic">
+<!--             <p style="text-align: center;"> Arbolito in 1990... </p> -->
+            <br>            
+            <div class="callout-box"> 
+                <div class="callout">
+                    <p><b>64%</b> of people in Arbolito are rent overburdened. Those who are rent overburdened have a   
+                    <img src="images/SVG/frown_blank.svg" height="24"/>
+                    face.
+                    </p>
+                </div> 
+                <div id="1990">   
+                </div>
+            </div>
+            <br>
+            <script>
+                // 3rd and 4th render arguments indicate the file path prefix before "blue[1-4].svg", smile and frown, respectively
+                // e.g. the 3rd argument below corresponds to the smiles SVG/square_big_smile[1-4].svg
+                rend.render(year1, data[year1], smilePath, frownPath); 
+            </script>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <p> There’s a sudden burst of internet companies being created in and around Arbolito, and rent prices in Arbolito start increasing. </p>
+            <p> You might suspect that this means a <i>higher</i> percentage people in Arbolito are rent overburdened, <i>but actually</i> the demographics of Arbolito start to change. </p>
+            <p> The new companies hire many high wage workers, so the percentage of high earners increases. 
+                And hardly any of the high income faces are rent overburdened! That means many of their incomes are likely <i>significantly</i> higher than 80% of the MFI.</p>
+
+            <div class="instruction">
+                <p><br>By the year 2000, Arbolito looks like this:</p>
+            </div>
+        </div>
+
+        <!-- GRAPHIC -->
+        <div class="graphic">
+            <br>  
+            <div id="2000-radio" class="radiogroup">
+                <label><input type="radio"  name="2000-buttons" value="2000">1990</label>
+                <label><input type="radio" name="2000-buttons" value="2000" checked>2000</label>
+            </div> 
+            <!-- TODO: add more callouts as it makes sense  -->
+            <div class="callout-box"> 
+                <div class="callout">
+                    <p>
+                    With a much higher percentage of people in higher income brackets, the percentage of people that are rent overburdened drops to <b>33%</b>. 
+                    Try comparing to 1990 to see the cost burden change.
+                    </p>
+                </div> 
+               
+                <div id="2000">   
+                </div>
+            </div>
+            <br>
+
+            <script>
+                document.getElementById('2000-radio').onclick = radioHandler;
+                rend.render(year2, data[year2], smilePath, frownPath); 
+            </script>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <p> To residents, it feels like many people were displaced, and housing prices only continue rising. </p>
+
+            <div class="instruction">
+                <p><br>By the year 2010, Arbolito looks like this:</p>
+            </div>
+        </div>
+
+        <!-- GRAPHIC -->
+        <div class="graphic">
+            <br>   
+            <div id="2010-radio" class="radiogroup">
+                <label><input type="radio" name="2010-buttons"  value="2010">1990</label>
+                <label><input type="radio" name="2010-buttons" value="2010">2000</label>                
+                <label><input type="radio" name="2010-buttons" value="2010" checked>2010</label>
+            </div>   
+            <div class="callout-box"> 
+                <div class="callout">
+                    <p> Even though many more people in Arbolito have a higher income, <b>42%</b> are rent overburdened because rent prices have continued rising. </p>
+                </div>
+
+                <div id="2010">   
+                </div>
+            </div>
+            <br>
+
+            <script>
+                document.getElementById('2010-radio').onclick = radioHandler;
+                rend.render(year3, data[year3], smilePath, frownPath); 
+            </script>
+            </div>
+            <br>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <div class="instruction">
+                <p><strong>So, what’s really changing here?</strong></p>
+            </div>
+            <p> 
+                It’s <i>not</i> the fraction of 
+                <img src="images/SVG/square_big_smile_blue1.svg" height="24"/>, 
+                <img src="images/SVG/square_big_smile_blue2.svg" height="24"/>, and 
+                <img src="images/SVG/square_big_smile_blue3.svg" height="24"/>
+                struggling to make rent. Arbolito is expensive, and money has always been tight for everyone.
+            </p> 
+            <p> 
+                However, because of the nature of the corporations’ work, they hire more high salary workers than corporations in other industries. This means that the number of
+                <img src="images/SVG/square_big_smile_blue4.svg" height="24"/>
+                has been on the rise, as is the fraction of them that don’t worry about money at all. 
+            </p>
+            <p> With an increasing number of high wage workers in Arbolito, the median family income has increased. <i>But</i>, it has increased faster than minimum wage. </p>
+        </div>
+
+        <!-- GRAPHIC -->
+        <div class="graphic">
+            <br>   
+            <img class="center-img" src="images/SVG/mfi-v-minwage-graphic.svg" height="400"/>
+            <br>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <p> This means that  the gap between 
+                <img src="images/SVG/square_big_smile_blue1.svg" height="24"/> and 
+                <img src="images/SVG/square_big_smile_blue4.svg" height="24"/>
+                has been growing, greatly skewing Arbolito’s wage distribution.
+            </p>
+
+            <p>  
+                The income distribution in Arbolito is so skewed that all of 
+                    <img src="images/SVG/square_big_smile_blue1.svg" height="24"/>, 
+                    <img src="images/SVG/square_big_smile_blue2.svg" height="24"/>, and 
+                    <img src="images/SVG/square_big_smile_blue3.svg" height="24"/>, and some 
+                    <img src="images/SVG/square_big_smile_blue4.svg" height="24"/>,
+                are considered ‘low income’.
+            </p>
+
+            <p> And, as more corporations are created and move to Arbolito and surrounding areas, greater amounts of land in Arbolito are being zoned for <i>commercial</i> rather than <i>residential</i> use. The existing land that is zoned residentially is largely zoned for low density housing. This means there is limited land in Arbolito to building housing in the first place. </p>
+        </div>
+
+
+        <!-- GRAPHIC -->
+        <div class="graphic">
+            <br>   
+            <img class="center-img" src="images/SVG/zoning-graphic.svg" height="400"/>
+            <br>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <p> And, Arbolito has some of the strictest building codes in the country, making the average cost of building a family home in Arbolito <b>$600,000</b>. </p>
+
+            <p> 
+                Consequently, average rents in Arbolito (and neighboring towns) are <i>much higher</i> than the national average, leaving an increasing number of 
+                    <img src="images/SVG/square_big_smile_blue1.svg" height="24"/>, 
+                    <img src="images/SVG/square_big_smile_blue2.svg" height="24"/>, and 
+                    <img src="images/SVG/square_big_smile_blue3.svg" height="24"/> 
+                rent overburdened.
+            </p>
+
+        </div>
+
+        <!-- GRAPHIC -->
+        <div class="graphic">
+            <br>   
+            <img class="center-img" src="images/SVG/avg-rents-graphic.svg" height="400"/>
+            <br>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <div class="instruction">
+                <p><br> Arbolito's best social scientists are actively studying the housing trends.</p>
+
+                <p><br> Without intervention, they predict the housing crisis in Arbolito will worsen, and that by the year 2020, Arbolito will look like this:
+                </p>
+            </div>
+        </div>
+
+
+        <!-- GRAPHIC -->
+        <div class="graphic">
+            <br>    
+            <div id="2018-radio" class="radiogroup">
+                <label><input type="radio" name="2020-buttons"  value="2018">1990</label>
+                <label><input type="radio" name="2020-buttons" value="2018">2000</label>                
+                <label><input type="radio" name="2020-buttons" value="2018">2010</label>                
+                <label><input type="radio" name="2020-buttons" value="2018" checked="true">2020</label>
+            </div>         
+            <div id="2018">
+                <script>
+                    document.getElementById('2018-radio').onclick = radioHandler;
+                    rend.render('2018', data['2018'], smilePath, frownPath); 
+                </script>
+            </div>
+            <br>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <div class="instruction">
+                <p><strong>But don't lose hope!</strong></p>
+                <p><strong>Let's try to raise the minimum wage.</strong></p>
+            </div>
+
+            <p>The experts are working on different strategies to fix the problem. Their first idea is to <i>increase minimum wage.</i> </p>
+            <p> 
+                This made rents somewhat more bearable for lower income people, but did not solve the housing problem per se.
+                Additionally, this did not help higher income people at all.
+            </p>
+
+            <div class="instruction">
+                <p><br>Try it out yourself:</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE GRAPHIC -->
+        <div class="graphic">
+            <!-- <div id="2018-radio-wage">
+                <span>Showing year:</span>
+                <label><input type="radio" name="2020-buttons-wage"  value="minwage-slider-box">1990</label>
+                <label><input type="radio" name="2020-buttons-wage" value="minwage-slider-box">2000</label>                
+                <label><input type="radio" name="2020-buttons-wage" value="minwage-slider-box">2010</label>                
+                <label><input type="radio" name="2020-buttons-wage" value="minwage-slider-box" checked="true">2020</label>
+            </div>  -->
+
+            <div class="slidecontainer">
+                <div><b>Minimum wage: $<span id="minwage"></span></b></div>
+                <div class="slider-labels">
+                    <div>$14/hr</div>
+                    <input type="range" min="14" max="28" value="14" class="slider" id="minwage-slider">
+                    <div>$28/hr</div>    
+                </div>
+                <button class="button" onclick="reset('minwage-slider-box', 'minwage-slider', 14)">RESET</button>            
+            </div>
+            <div id="minwage-slider-box"></div>
+        </div>
+
+        <!-- TEXT -->
+        <div class="text">
+            <div class="instruction">
+                <p><strong>We can keep trying!</strong></p>
+                <p><strong>Let's try to reduce construction regulation.</strong></p>
+            </div>
+
+            <p>Next they tried <i>reducing construction regulations</i> to lower building costs.</p>
+            <p> 
+                This helped somewhat, because Arbolito imposes lots of expensive regulations that do not improve the livability of homes.
+                For example, city regulations require that low income housing in Arbolito is extremely attractive. 
+                However, Arbolito <i>is</i> susceptible to natural disasters like earthquakes, and it also has a very unique sewer system
+                that needs lots of monitoring. This means some amount of <b>expensive regulation is necessary for safety.</b>
+            </p>
+            <p>
+                Note: the regulation index is a well-defined parameter that you can look up if you wish. For now, you can think of
+                it as a measure of how expensive it is to implement city regulations.
+            </p>
+
+            <div class="instruction">
+                <p><br>Try it out yourself:</p>
+            </div>
+        </div>
+        
+        <!-- INTERACTIVE GRAPHIC -->
+        <div class="graphic">
+            <!-- <div id="2018-radio-reg">
+                <span>Showing year:</span>
+                <label><input type="radio" name="2020-buttons-reg"  value="regindex-slider-box">1990</label>
+                <label><input type="radio" name="2020-buttons-reg" value="regindex-slider-box">2000</label>                
+                <label><input type="radio" name="2020-buttons-reg" value="regindex-slider-box">2010</label>                
+                <label><input type="radio" name="2020-buttons-reg" value="regindex-slider-box" checked="true">2020</label>
+            </div>  -->
+            <div class="slidecontainer">
+                <div><b>Regulation index: <span id="regindex"></span></b></div>
+                <div class="slider-labels">
+                    <div>16</div>
+                    <input type="range" min="16" max="30" value="30" class="slider" id="regindex-slider">
+                    <div>30</div>    
+                </div>
+                <button class="button" onclick="reset('regindex-slider-box', 'regindex-slider', 30)">RESET</button>            
+            </div>
+            <div id="regindex-slider-box"></div>
+        </div>
+
+
+        <!-- FINAL TAKEAWAYS -->
+        <div id="outro_container">
+            <div id="outro">
+                <br>
+                <div class="instruction">
+                    <p>Thank you for learning about the story of Arbolito!</p>
+                </div>
+                <br>
+
+                <p> The story of Arbolito is <i>actually</i> the story of <i><b>San Francisco</b></i>, <br>
+                    all recreated from data on income distributions, housing prices, and zoning. </p>
+
+
+                <p> As a voter or policy advocate, your actions will affect housing in your area. </p>
+
+                <p> If you would like to learn more about the housing crisis in the San Francisco Bay Area, <br>
+                    here are some nonprofits you can learn from and support: the <a href="https://techequitycollaborative.org/">Tech Equity Collaborative</a>, <br>
+                    the <a href="https://www.sfhac.org/">San Francisco Housing Action Coalition</a>, and the <a href="https://nonprofithousing.org/"> Non-Profit Housing Association of Northern California</a>.
+            </div>
+        </div>
+
+
+        <script>
+            var year = '2018';
+            function reset(boxId, sliderId, origVal) {
+                rend.render(boxId, data[year], smilePath, frownPath); 
+                var slider = document.getElementById(sliderId);
+                // be mindful of the fact that this is a DOM element, not SliderBox instance
+                // var box = document.getElementById(boxId);
+                slider.value = origVal;
+                //TODO (Ellen) fix error in the following line. Commenting it out for now.
+                //box.resetRents(data[year]);
+            }
+
+            // This format should be semi-consistent 
+            // Assume input is the slider value. Output should be a % change in housing (0-100)
+            // You have access to this.incomes (e.g. this.incomes['low'] is a number)
+            // You also have access to the 2018 entry in data.js as this.data
+            // Feel free to add other variables needed. For example, here I added minWage to keep track of the previous value
+            function minWageUpdate(minWage) {
+                //if (!this.minWage) this.minWage = minWage;
+
+                //let prevMinWage = this.minWage;
+                this.minWage = minWage;
+                let bracketsAffected = ['low']
+                if (minWage >=19) {
+                    bracketsAffected.push('lowMiddle')
+                }
+
+                for (let i = 0; i < bracketsAffected.length; i++) {
+                    this.incomes[bracketsAffected[i]] = minWage * 40 * 50;
+                }
+                
+                let housingChange = 0;
+                //let minWageFraction = this.data['low']['total'] / 100;
+                //let percentChangeIncome = 100 * minWageFraction * (minWage - prevMinWage) / prevMinWage;
+                //let housingChange =  (0.4461 * percentChangeIncome);// removed added constant of ~1 because housingCHange was always positive
+
+                document.getElementById('minwage').innerHTML = minWage;
+                return housingChange;
+            }
+            
+            function regIndexUpdate(regIndex) {
+            
+                this.regIndex = regIndex;
+                
+                let housingChange = 10000 * (-0.0092 + 0.0006 * regIndex);
+
+                document.getElementById('regindex').innerHTML = regIndex;
+                return housingChange;
+            }
+            
+            var initialHousingPrice = 25000;
+            var mfi = 75600; // updated based on data provided here: https://statisticalatlas.com/place/California/San-Francisco/Household-Income
+            var minWageSliderBox = new SliderBox(rend, 'minwage-slider-box',  'minwage-slider', data[year], smilePath, frownPath, minWageUpdate, initialHousingPrice, mfi);
+            var regIndexSliderBox = new SliderBox(rend, 'regindex-slider-box',  'regindex-slider', data[year], smilePath, frownPath, regIndexUpdate, initialHousingPrice, mfi);
+            
+            reset('minwage-slider-box', 'minwage-slider', 14);
+            reset('regindex-slider-box', 'regindex-slider', 30);
+
+            // function sliderRadioHandler(event) {
+            //     var year = event.target.labels[0].innerText;
+
+            //     radioHandler(event);
+            // }
+
+            // document.getElementById('2018-radio-reg').onclick = sliderRadioHandler
+            // // document.getElementById('2018-radio-wage').onclick = sliderRadioHandler;
+            document.getElementById('minwage').innerHTML = 14;
+            document.getElementById('regindex').innerHTML = 30;
+        </script>
+
+
+        <!-- TODO: insert more interactive boxes. This should only require editing this file.  -->
+
+    </body>
+</html>

@@ -1,0 +1,55 @@
+.face {
+    width: 8%;
+}
+
+.box {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+}
+
+.smiles {
+    /* width: 40%; */
+    /* margin: auto; */
+    /* margin: 10px; */    
+}
+
+.income-label, .population {
+    flex-basis: 100px;
+    right: -30%;
+    top: 35%;
+    margin-left: 20px;
+    margin-right: 20px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.income-label {
+
+}
+
+img {
+     margin: 1%; 
+    padding: 0;
+}
+
+
+.smiles.low {
+    background-color: #e8eef4;
+}
+
+.smiles.lowMiddle {
+    background-color: #a2bdd8;
+}
+
+.smiles.highMiddle {
+    background-color: #7590aa;
+}
+
+.smiles.high {
+    background-color: #39536d;
+}
