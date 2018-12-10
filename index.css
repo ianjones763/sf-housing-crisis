@@ -72,6 +72,9 @@ body{
 	/*background: #222;*/
 	 background: #ffffff; 
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .graphic > #play_title{
@@ -107,6 +110,9 @@ label {
 	top: 30%;
 }
 
+.slidecontainer {
+	width: 70%;
+}
 
 
 

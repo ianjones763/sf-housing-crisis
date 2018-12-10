@@ -5,13 +5,13 @@
         <link rel="stylesheet" href="slider-style.css"/>
         <link rel="stylesheet" href="index.css"/>
         <!-- Makes call to rendering API -->
-        <script src="renderer.js"></script>
+        <script src="js/renderer.js"></script>
         <!-- Slider box  -->
-        <script src="sliderBox.js"></script>
+        <script src="js/sliderBox.js"></script>
         
         <!-- Puts an object called `data` in global scope -->
         <!-- TODO: add the static data points to this file (the last will be editable in JS) -->
-        <script src="data.js"></script> 
+        <script src="js/data.js"></script> 
     </head>
     <body>
 
@@ -95,7 +95,7 @@
 
         <!-- TEXT -->
         <div class="text">
-            <p> There’s a sudden burst of internet companies being created in and around Arbolito, and rent prices in Arbolito start increasing. </p>
+            <p> There&apos;s a sudden burst of internet companies being created in and around Arbolito, and rent prices in Arbolito start increasing. </p>
             <p> You might suspect that this means a <i>higher</i> percentage people in Arbolito are rent overburdened, <i>but actually</i> the demographics of Arbolito start to change. </p>
             <p> The new companies hire many high wage workers, so the percentage of high earners increases. 
                 And hardly any of the high income faces are rent overburdened! That means many of their incomes are likely <i>significantly</i> higher than 80% of the MFI.</p>
@@ -196,10 +196,10 @@
 
         <!-- TEXT -->
         <div class="text">
-            <p> This means that  the gap between 
+            <p> This means that the gap between 
                 <img src="images/SVG/square_big_smile_blue1.svg" height="24"/> and 
                 <img src="images/SVG/square_big_smile_blue4.svg" height="24"/>
-                has been growing, greatly skewing Arbolito’s wage distribution.
+                has been growing, greatly skewing Arbolito&apos;s wage distribution.
             </p>
 
             <p>  
@@ -208,7 +208,7 @@
                     <img src="images/SVG/square_big_smile_blue2.svg" height="24"/>, and 
                     <img src="images/SVG/square_big_smile_blue3.svg" height="24"/>, and some 
                     <img src="images/SVG/square_big_smile_blue4.svg" height="24"/>,
-                are considered ‘low income’.
+                are considered &apos;low income&apos;.
             </p>
 
             <p> And, as more corporations are created and move to Arbolito and surrounding areas, greater amounts of land in Arbolito are being zoned for <i>commercial</i> rather than <i>residential</i> use. The existing land that is zoned residentially is largely zoned for low density housing. This means there is limited land in Arbolito to building housing in the first place. </p>
@@ -246,7 +246,7 @@
         <!-- TEXT -->
         <div class="text">
             <div class="instruction">
-                <p><br> Arbolito's best social scientists are actively studying the housing trends.</p>
+                <p><br> Arbolito&apos;s best social scientists are actively studying the housing trends.</p>
 
                 <p><br> Without intervention, they predict the housing crisis in Arbolito will worsen, and that by the year 2020, Arbolito will look like this:
                 </p>
@@ -292,7 +292,7 @@
 
         <!-- INTERACTIVE GRAPHIC -->
         <div class="graphic">
-            <div id="2018-radio-wage">
+            <div id="2018-radio-wage" style="margin:auto">
                 <span>Showing year:</span>
                 <label><input type="radio" name="2020-buttons-wage"  value="minwage-slider-box">1990</label>
                 <label><input type="radio" name="2020-buttons-wage" value="minwage-slider-box">2000</label>                
@@ -338,7 +338,7 @@
         
         <!-- INTERACTIVE GRAPHIC -->
         <div class="graphic">
-            <div id="2018-radio-reg">
+            <div id="2018-radio-reg" style="margin:auto">
                 <span>Showing year:</span>
                 <label><input type="radio" name="2020-buttons-reg"  value="regindex-slider-box">1990</label>
                 <label><input type="radio" name="2020-buttons-reg" value="regindex-slider-box">2000</label>                
@@ -438,14 +438,14 @@
             reset('minwage-slider-box', 'minwage-slider', 14);
             reset('regindex-slider-box', 'regindex-slider', 30);
 
-            // function sliderRadioHandler(event) {
-            //     var year = event.target.labels[0].innerText;
+            function sliderRadioHandler(event) {
+                var year = event.target.labels[0].innerText;
 
-            //     radioHandler(event);
-            // }
+                radioHandler(event);
+            }
 
-            // document.getElementById('2018-radio-reg').onclick = sliderRadioHandler
-            // // document.getElementById('2018-radio-wage').onclick = sliderRadioHandler;
+            document.getElementById('2018-radio-reg').onclick = sliderRadioHandler
+            document.getElementById('2018-radio-wage').onclick = sliderRadioHandler;
             document.getElementById('minwage').innerHTML = 14;
             document.getElementById('regindex').innerHTML = 30;
         </script>
